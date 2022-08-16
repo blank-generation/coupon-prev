@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>CouponPreview</title>
+</head>
+
+<body>
+    <div class="preview-container">
+        <div x-data class="coupon">
+            <div class="coupon-container card">
+                <div class="coupon-content">
+                    <div class="coupon-details front">
+                        <div class="coupon-row1">
+                            <div class="coupon-industry">
+                                <img :src="industryIcon" alt="industry-icon">
+                                <p x-text="industry"></p>
+                            </div>
+                            <div class="coupon-logo">
+                                <img :src="brandImage" alt="">
+                            </div>
+
+                        </div>
+                        <div class="coupon-row2">
+                            <div class="code-container">
+                                <div class="coupon-code-container">
+                                    <p>Coupon Code</p>
+                                    <p class="coupon-code" x-text="couponCode"></p>
+                                </div>
+                                <div class="validity">
+                                    Valid till <span x-text="validity"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coupon-text-container" :style="{background: brandColor}">
+                            <div class="coupon-text" x-text="couponDetails">
+                            </div>
+                        </div>
+                        <div class="coupon-powered">
+                            powered by <img src="./assets/extraa_logo.png" alt="">
+                        </div>
+                    </div>
+                    <div class="coupon-terms back">
+                        <div class="terms-logo"> <img :src="brandImage" alt="">
+                            <p>Terms & Conditions</p>
+                        </div>
+                        <div class="terms-text">
+                            <ul>
+                                <template x-for="term in terms">
+                                    <li x-text="term"></li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @font-face {
+            font-family: rota-bold;
+            src: url(./res/Rota-Bold.otf);
+        }
+
+        @font-face {
+            font-family: rota-semi;
+            src: url(./res/Rota-SemiBold.otf);
+        }
+
+        @font-face {
+            font-family: rota-black;
+            src: url(./res/Rota-Black.otf);
+        }
+
+        .preview-container {
+            /* background-color: #4F3084; */
+            font-family: rota-semi;
+            margin: 0em;
+
+        }
+
+        .coupon {
+            /* background-color: #4F3084; */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .coupon-container {
+            max-width: 300px;
+        }
+
+
+        .coupon-details {
+            margin-top: 2em;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 1em 0;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .coupon-industry {
+            max-width: 64px;
+            font-size: small;
+        }
+
+        .coupon-logo img {
+            max-height: 128px;
+            max-width: 128px;
+        }
+
+        .coupon-row1 {
+            display: flex;
+            color: #4F3084;
+            text-align: center;
+            justify-content: space-around;
+            width: 100%;
+            align-items: center;
+            margin-bottom: -2em;
+            line-height: 1;
+        }
+
+        .coupon-row2 {
+            color: #00030A;
+            display: flex;
+            justify-content: center;
+            transform: translateY(2em);
+        }
+
+        .code-container {
+            background-color: #FCFAFF;
+            border-radius: 12px;
+            display: flex;
+            width: 80%;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            /* border: gray 2px solid; */
+        }
+
+        .coupon-code-container {
+            /* background-color: #4F3084; */
+            width: 100%;
+            /* color: white; */
+           
+         
+            text-align: center;
+            border-radius: 12px;
+   
+        }
+
+        .validity {
+            font-size: 0.75em;
+            /* margin-top: 0.5em; */
+            padding-bottom: 0.5em;
+        }
+
+        .coupon-code {
+            font-family: rota-black;
+            line-height: 0.0;
+            margin-top: 0;
+            font-size: 1.6em;
+            /* color: #F9B61F; */
+            border-bottom: gray 2px dotted;
+            padding-bottom: .6em;
+            margin-block-end: .4em;
+
+        }
+
+        .coupon-text-container {
+            color: #00030A;
+            padding-top: 3em;
+            padding-bottom: 2em;
+            display: flex;
+            justify-content: center;
+        }
+
+        .coupon-text {
+            background-color: #FCFAFF;
+            padding: 1em;
+            width: 80%;
+            border-radius: 12px;
+        }
+
+        .coupon-powered {
+            text-align: center;
+            padding-top: 0.6em;
+        }
+
+        .coupon-powered img {
+            max-width: 80px;
+            vertical-align: middle;
+        }
+
+        .coupon-terms {
+            background-color: white;
+            color: #00030A;
+            text-align: center;
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 2em;
+            margin-bottom: 2em;
+            padding-bottom: 0.4em;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .coupon-terms p{
+            font-family: rota-bold;
+        }
+        .terms-logo img {
+            max-width: 140px;
+            max-height: 100px;
+            padding-top: 1em;
+        }
+
+        .terms-logo p {
+            font-size: 1.2em;
+        }
+
+        .terms-text {
+            text-align: left;
+            padding-right: 1em;
+        }
+
+        .terms-text ul {
+            padding-inline-start: 24px;
+        }
+
+    </style>
+
+    <script>
+        
+        let brandImage = "./assets/brand_logo2.png";
+        let brandColor = '#F88421';
+
+        let industryIcon = "./assets/icons/fashion.png";
+        let industry = 'Fashion & Clothing'
+
+        let validity = '4th July 2023';
+        let couponCode = 'CR333310';
+        // Character limit for coupon details -> 160
+        let couponDetails = 'Get 20% off on any purchase above 2500/-. Offer applicable on select stock only.Get 20% off on any purchase above 2500/-. Offer applicable on select stock only.';
+        let terms =
+            ['Users must agree to the terms of the agreement before using the service',
+                'Users must be at least 13 years old to use YouTube.',
+                'Users under 18 must have their guardian or parents’ permission to use the service.',
+                'Anyone who uses YouTube is automatically assumed to have agreed to its terms and conditions.',
+                'Anyone who uses YouTube is automatically assumed to have agreed to its terms and conditions.'
+            ];
+
+
+    </script>
+</body>
+
+</html>
